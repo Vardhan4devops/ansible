@@ -10,9 +10,9 @@ Ansible supports both Linux(ssh) and Windows(winRm).
 Difference between Puppet & Ansible:
 -------------------------------------
 Puppet:                                      Ansible:
-1. Pull model								 1. Push model
-2. Master/Slsve architecture				 2. Agentless (inventory & Dynamic Inventory)
-3. Puppet language							 3. YAML (simple to learn)
+1. Pull model								                 1. Push model
+2. Master/Slsve architecture				         2. Agentless (inventory & Dynamic Inventory)
+3. Puppet language							             3. YAML (simple to learn)
 
 Install Ansible:
 ----------------
