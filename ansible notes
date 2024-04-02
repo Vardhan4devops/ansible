@@ -1,0 +1,50 @@
+Configuration Management - Ansible
+
+For on-premise & cloud servers, based OS and distribution, system admins used to use different scripts (Shell-Linux, Powershell-Windows). It is technically difficult to maintain 100s of servers to upgrade, to install security patches, to install required softwares.
+In order to address the above problem, the concept - Configuration Management is introduced.
+
+Ansible is developed by RedHat. Ansible is written in Python.
+
+Ansible supports both Linux(ssh) and Windows(winRm).
+
+Difference between Puppet & Ansible:
+-------------------------------------
+Puppet:                                      Ansible:
+1. Pull model								 1. Push model
+2. Master/Slsve architecture				 2. Agentless (inventory & Dynamic Inventory)
+3. Puppet language							 3. YAML (simple to learn)
+
+Install Ansible:
+----------------
+sudo apt update
+sudo apt install ansible
+
+-> create ansible & target servers, and confugure passwordless authentication using ssh-keygen. For Ansible demo we need minimum 2 servers.
+
+-> Default location of inventoryfile is: /etc/ansible/hosts
+
+-> To create a file in Target server: ansible -i inventory target -m "shell" -a "touch my_file"
+
+-> Ansible adhoc commands are for one or two random tasks, whereas ansible-playbooks are for recurring multiple tasks.
+
+-> Passing multiple arguments in Ansible adhoc command : ansible -i inventory target -m "shell" -a "du -sh;ls -ltr;"
+
+-> ansible = to run ansible adhoc commands, ansible-playbook = to run ansible playbook commands.
+
+first-palybook:
+-------------------
+---
+- name: Install and run nginx
+  hosts: target
+  become: true
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+
